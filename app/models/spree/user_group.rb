@@ -6,7 +6,7 @@ module Spree
     attr_accessible :name
 
     calculated_adjustments
-    
+
     def calculator_description
       return t(:none) if calculator.nil?
       if calculator.preferred_based_on_cost_price
