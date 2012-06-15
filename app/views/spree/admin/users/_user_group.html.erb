@@ -1,0 +1,25 @@
+<div data-hook="admin_user_form_groups">
+  <p>
+    <%= label_tag nil, t(:user_group) %><br />
+    <%# @user_groups.each do |groups| %>
+    <% for group in Spree::UserGroup.all %>
+      <label class="sub">
+        <%= check_box_tag 'user[group_ids][]', group.id, @user.groups.include?(group), :id => "user_group_#{group.name}" %>
+        <%= group.name %>
+      </label> &nbsp;
+    <% end %>
+    <%= hidden_field_tag 'user[group_ids][]', '' %>
+  </p>
+</div>
+
+
+
+<p>
+  <label><%= t("user_group") %></label><br />
+  <% for group in Spree::UserGroup.all %>
+    <label class="sub">
+      <%= f.checkbox(:user_group_id, group.id) %>
+      <%= group.name %>
+    </label> &nbsp;
+  <% end %>
+</p>
