@@ -3,6 +3,8 @@ module Spree
     preference :flat_percent, :decimal, :default => 0
     preference :based_on_cost_price, :boolean, :default => false
 
+    attr_accessible :preferred_flat_percent, :preferred_based_on_cost_price
+
     def self.description
       I18n.t("advanced_flat_percent")
     end
