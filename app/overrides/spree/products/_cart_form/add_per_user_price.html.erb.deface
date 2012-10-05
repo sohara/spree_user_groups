@@ -1,0 +1,4 @@
+<!-- replace_contents "[data-hook=product_price] span.selling"
+     original '28a07959b467a406a3b20bc7ad2e7146e3d6eb64' 
+-->
+  <%= money @product.price_for_user(current_user) %>
