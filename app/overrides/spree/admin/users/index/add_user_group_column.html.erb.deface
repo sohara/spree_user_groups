@@ -1,0 +1,3 @@
+<!-- insert_before "[data-hook=admin_users_index_row_actions]" -->
+  <td><%= user.user_group.name if user.user_group.present? %> </td>
+

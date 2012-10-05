@@ -1,0 +1,3 @@
+<!-- insert_before "[data-hook='admin_users_index_header_actions']" -->
+  <th><%= sort_link @search,:user_group_id, t(:user_group), {}, {:title => 'users_user_group'} %></th>
+
