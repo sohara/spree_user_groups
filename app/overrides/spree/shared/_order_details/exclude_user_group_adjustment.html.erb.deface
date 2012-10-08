@@ -1,0 +1,2 @@
+<!-- insert_after "code[erb-silent]:contains('@order.price_adjustment_totals.keys.each do |key|')" -->
+      <% next if (key == 'User Group') %>

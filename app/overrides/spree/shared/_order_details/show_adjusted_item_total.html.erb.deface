@@ -1,0 +1,3 @@
+<!-- replace_contents "code[erb-loud]:contains('money @order.item_total')" -->
+
+<%= money @rder.item_total_for_user %>

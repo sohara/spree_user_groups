@@ -10,7 +10,6 @@ module Spree
     end
 
     def compute(object)
-#binding.pry
       return unless object.present? and object.line_items.present? and object.user.present?
 
       part = self.preferred_flat_percent.abs / 100.0

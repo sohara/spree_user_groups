@@ -1,0 +1,4 @@
+<!-- replace_contents "[data-hook=order_item_price] span" -->
+
+<%# this is potentially dangerous since line_item.price maybe not equal line_item.variant.price %>
+<%= money(item.variant.price_for_user(current_user)) %>

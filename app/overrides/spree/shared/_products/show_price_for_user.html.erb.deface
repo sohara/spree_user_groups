@@ -1,0 +1,5 @@
+<!-- replace_contents "[data-hook=products_list_item] span.selling" -->
+
+<%= Spree::Money.new(product.price_for_user(current_user)).to_s %>
+
+      
