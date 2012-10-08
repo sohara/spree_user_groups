@@ -9,11 +9,7 @@ module Spree
 
     def calculator_description
       return t(:none) if calculator.nil?
-      if calculator.preferred_based_on_cost_price
-        "#{I18n.t(:cost_price)} + #{calculator.preferred_flat_percent}%"
-      else
-        "#{I18n.t(:price)} - #{calculator.preferred_flat_percent}%"
-      end
+      "#{I18n.t(:price)} - some percentage"
     end
   end
 end
