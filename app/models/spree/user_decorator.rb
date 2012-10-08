@@ -5,7 +5,7 @@ module Spree
 
     def create_adjustment_for(order)
       if self.user_group && order.user_group_adjustments.count == 0
-        self.user_group.create_adjustment(I18n.t(:user_group_adjustment), order, order, true)
+        adj = self.user_group.create_adjustment(I18n.t(:user_group_adjustment), order, order, true)
       end
     end
   end

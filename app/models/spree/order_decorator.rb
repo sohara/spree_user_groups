@@ -14,13 +14,15 @@ module Spree
       
       # disable validations since this can cause issues when associating an incomplete address during the address step
       save(:validate => false)
+
+      # this is SO INCREDIBLY CRITICAL!  if you don't do this, the adjustment, for
+      # some reason, has had it's amount stripped immediately after creation above
+      self.update! 
     end
 
     def item_total_for_user
-      user = item.order.user
-
       if user && user.user_group
-        item_total - user.user_group_adjustments.all.inject(0) {|sum, adj| sum += adj.amount}.abs
+        item_total - user_group_adjustments.all.inject(0) {|sum, adj| sum += adj.amount}.abs
       else
         item_total
       end
