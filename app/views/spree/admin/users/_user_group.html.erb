@@ -6,4 +6,10 @@
       <%= group.name %>
     </label> &nbsp;
   <% end %>
+  
+  <label class="sub">
+    <%= f.radio_button(:user_group_id, -1, id: 'none_user_group') %>
+    <%= t(:none) %>
+  </label> &nbsp;
+
 </p>
