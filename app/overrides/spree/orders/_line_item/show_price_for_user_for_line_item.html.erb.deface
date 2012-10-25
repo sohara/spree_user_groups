@@ -1,4 +1,0 @@
-<!-- replace_contents "[data-hook=cart_item_price]" -->
-
-<%# this is potentially dangerous since line_item.price maybe not equal line_item.variant.price %>
-<%= money(line_item.variant.price_for_user(current_user)) %>

@@ -1,6 +1,0 @@
-<!-- replace "code[erb-loud]:contains('money @order.item_total')" 
-  original '02ea850d487b51961de79ac5dd77c1e912ee63ad'
--->
-
-
-<%= money @order.item_total_for_user %>

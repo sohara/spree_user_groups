@@ -4,32 +4,51 @@ module Spree
       adjustments.where(:originator_type => "Spree::UserGroup")
     end
 
-    # Associates the specified user with the order and destroys any previous association with guest user if necessary.
-    def associate_user!(user)
-      self.user = user
-      self.email = user.email
-      
-      # Create adjustment for user group
-      self.user.create_adjustment_for(self)
-      
-      # disable validations since this can cause issues when associating an incomplete address during the address step
-      save(:validate => false)
+    # ensure update_prices_per_user is called
+    # after every associate_user call
+    #
+    alias_method :associate_user_without_user_price!, :associate_user!
 
-      # this is SO INCREDIBLY CRITICAL!  if you don't do this, the adjustment, for
-      # some reason, has had it's amount stripped immediately after creation above
-      self.update! 
+    def associate_user!(user)
+      associate_user_without_user_price! user
+      update_prices_per_user
     end
 
-    def item_total_for_user
-      if user && user.user_group
-        item_total - user_group_adjustments.all.inject(0) {|sum, adj| sum += adj.amount}.abs
+
+    # ensure update_prices_per_user is called
+    # after every add_varaint call
+    #
+    alias_method :add_variant_without_user_price, :add_variant
+
+    def add_variant(variant, quantity = 1)
+      current_item = add_variant_without_user_price(variant, quantity)
+
+      if update_prices_per_user
+        current_item.reload
       else
-        item_total
+        current_item
       end
     end
 
-    def has_only_user_group_adjustments?
-      price_adjustments.all? {|adj| adj.originator_type == 'Spree::UserGroup'}
+
+    # changes line_item price value if user has a group discount
+    #
+    def update_prices_per_user
+      return unless self.user.present?
+
+      changes = false
+      self.line_items.each do |line_item|
+        user_price = line_item.variant.price_for_user(self.user)
+        if user_price != line_item.price
+          line_item.price = user_price
+          line_item.save
+          changes = true
+        end
+      end
+
+
+      self.reload if changes
+      changes
     end
   end
 end

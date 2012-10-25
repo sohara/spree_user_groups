@@ -1,8 +1,0 @@
-<!-- replace_contents "[data-hook=order_item_total] span"
-original 'eecb64ae5846ab47c18a5f92f2c45966ebdd4c94' 
--->
-
-<%# this is potentially dangerous since line_item.price maybe not equal line_item.variant.price %>
-<%= money(item.variant.price_for_user(current_user) * item.quantity) %>
-
- 
