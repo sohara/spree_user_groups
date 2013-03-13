@@ -20,8 +20,8 @@ module Spree
     #
     alias_method :add_variant_without_user_price, :add_variant
 
-    def add_variant(variant, quantity = 1)
-      current_item = add_variant_without_user_price(variant, quantity)
+    def add_variant(variant, quantity = 1, currency = nil)
+      current_item = add_variant_without_user_price(variant, quantity, currency)
 
       if update_prices_per_user
         current_item.reload

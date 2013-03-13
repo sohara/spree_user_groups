@@ -1,11 +1,11 @@
 module Spree
   class UserGroup < ActiveRecord::Base
+    include Spree::Core::CalculatedAdjustments
+
     has_many :users, :dependent => :nullify
     validates :name, :presence => true
 
     attr_accessible :name
-
-    calculated_adjustments
 
     def calculator_description
       return t(:none) if calculator.nil?

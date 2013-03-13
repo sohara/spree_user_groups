@@ -1,5 +1,7 @@
 module Spree
   BaseController.class_eval do
+    include Spree::Core::ControllerHelpers::Order
+
     before_filter :ubiquitous_associate_user
 
     private
