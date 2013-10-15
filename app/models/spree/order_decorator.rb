@@ -18,17 +18,20 @@ module Spree
     # ensure update_prices_per_user is called
     # after every add_varaint call
     #
-    alias_method :add_variant_without_user_price, :add_variant
+    # Commenting out for now during 2.1 upgrade. :add_varaint no
+    # longer part of spree API (use order.contents.add instead)
+    #
+    # alias_method :add_variant_without_user_price, :add_variant
 
-    def add_variant(variant, quantity = 1, currency = nil)
-      current_item = add_variant_without_user_price(variant, quantity, currency)
+    # def add_variant(variant, quantity = 1, currency = nil)
+    #   current_item = add_variant_without_user_price(variant, quantity, currency)
 
-      if update_prices_per_user
-        current_item.reload
-      else
-        current_item
-      end
-    end
+    #   if update_prices_per_user
+    #     current_item.reload
+    #   else
+    #     current_item
+    #   end
+    # end
 
 
     # changes line_item price value if user has a group discount
