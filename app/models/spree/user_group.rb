@@ -5,8 +5,6 @@ module Spree
     has_many :users, :dependent => :nullify
     validates :name, :presence => true
 
-    attr_accessible :name
-
     def calculator_description
       return t(:none) if calculator.nil?
       "#{I18n.t(:price)} - some percentage"
