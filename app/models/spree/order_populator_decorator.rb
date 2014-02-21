@@ -1,7 +1,6 @@
 module Spree
   OrderContents.class_eval do
 
-
     alias_method :add_without_user_pricing, :add
     # Get current line item for variant if exists
     # Add variant qty to line_item
