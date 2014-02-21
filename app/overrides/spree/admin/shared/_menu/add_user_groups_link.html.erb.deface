@@ -1,0 +1,3 @@
+<!-- insert_bottom "[data-hook=admin_tabs]" -->
+
+<%= tab(:user_groups, :url => spree.admin_user_groups_path, :icon => 'icon-user') %>
